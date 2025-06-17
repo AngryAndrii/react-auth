@@ -1,5 +1,50 @@
+import { Box, Button, TextField } from '@mui/material';
+import { useForm } from 'react-hook-form';
+
 function Register() {
-  return <>it is Register Page</>;
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => console.log(data);
+
+  return (
+    <>
+      <Box
+        onSubmit={handleSubmit(onSubmit)}
+        component='form'
+        sx={{
+          '& > :not(style)': { m: 1, width: '25ch' },
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+        noValidate
+        autoComplete='off'
+      >
+        <TextField {...register('nickname')} label='Nickname' variant='filled' type='text' />
+        <TextField
+          {...register('mail', { required: true })}
+          label='Email'
+          type='mail'
+          variant='filled'
+        />
+        <TextField
+          {...register('password', { required: true })}
+          label='Password'
+          type='password'
+          autoComplete='current-password'
+          variant='filled'
+        />
+        {errors.exampleRequired && <span>This field is required</span>}
+        <Button variant='outlined' type='submit'>
+          Submit
+        </Button>
+      </Box>
+    </>
+  );
 }
 
 export default Register;

@@ -1,13 +1,9 @@
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import { Typography } from '@mui/material';
 
 function Home() {
-  return (
-    <>
-      Home page!! HOme HOme HOme
-      <Button variant='contained'>Hello world</Button>
-    </>
-  );
+  return <>Home home home</>;
 }
 
 export default Home;
