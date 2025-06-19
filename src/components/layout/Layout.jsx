@@ -1,15 +1,21 @@
-import { Box, List } from '@mui/material';
+import { Box, List, Button, AppBar } from '@mui/material';
 import { NavLink, Outlet } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import handleSignOut from '../../helpers/signout';
 
 function Layout() {
   const { user, loading } = useAuth();
   if (loading) return <div>Завантаження...</div>;
   return (
-    <Box sx={{ margin: '20px' }}>
-      It is layout component
-      <h4>Hello {user?.email}</h4>
-      <header>
+    <Box sx={{ margin: '20px', paddingTop: '50px' }}>
+      <AppBar
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          padding: '5px 25px',
+        }}
+      >
         <nav>
           <List sx={{ display: 'flex', flexDirection: 'row', columnGap: '10px' }}>
             <li>
@@ -26,7 +32,20 @@ function Layout() {
             </li>
           </List>
         </nav>
-      </header>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            columnGap: '20px',
+          }}
+        >
+          <Box>{user?.displayName}</Box>
+          <Button variant='contained' onClick={handleSignOut}>
+            Logout
+          </Button>
+        </Box>
+      </AppBar>
       <main>
         <Outlet />
       </main>
