@@ -1,9 +1,9 @@
 import { Box, Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../../firebase/firebaseConfig';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
-function Register() {
+function SignIn() {
   const {
     register,
     handleSubmit,
@@ -11,26 +11,13 @@ function Register() {
   } = useForm();
 
   const onSubmit = (data) => {
-    const name = data.nickname;
     const email = data.email;
     const password = data.password;
 
-    createUserWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-
-        updateProfile(user, {
-          displayName: name,
-        })
-          .then(() => {
-            console.log('Нікнейм збережено:', user.displayName);
-            window.location.reload();
-          })
-          .catch((error) => {
-            console.error('Помилка при оновленні профілю:', error.message);
-          });
-
-        console.log('User created:', user);
+        console.log('Успішний вхід:', user.displayName);
       })
       .catch((error) => {
         console.error('Error:', error.code, error.message);
@@ -50,7 +37,6 @@ function Register() {
         noValidate
         autoComplete='off'
       >
-        <TextField {...register('nickname')} label='Nickname' variant='filled' type='text' />
         <TextField
           {...register('email', { required: true })}
           label='Email'
@@ -66,11 +52,11 @@ function Register() {
         />
         {errors.exampleRequired && <span>This field is required</span>}
         <Button variant='outlined' type='submit'>
-          Submit
+          Sign In
         </Button>
       </Box>
     </>
   );
 }
 
-export default Register;
+export default SignIn;
