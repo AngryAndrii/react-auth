@@ -2,8 +2,10 @@ import { Box, Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { auth } from '../../firebase/firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import useRedirect from '../../hooks/useRedirect';
 
 function SignIn() {
+  const goTo = useRedirect();
   const {
     register,
     handleSubmit,
@@ -18,6 +20,7 @@ function SignIn() {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log('Успішний вхід:', user.displayName);
+        goTo('/profile');
       })
       .catch((error) => {
         console.error('Error:', error.code, error.message);
