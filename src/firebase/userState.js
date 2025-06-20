@@ -7,7 +7,7 @@ const checkUser = (auth, user) => {
       const uid = user.uid;
       console.log(uid);
     } else {
-      console.log('user not sitned');
+      console.log('user not signed');
     }
   });
 };

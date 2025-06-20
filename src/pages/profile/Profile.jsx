@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import useAuth from '../../hooks/useAuth';
+import { useAuth } from '../../helpers/authContext';
 
 function Profile() {
   const { user, loading } = useAuth();

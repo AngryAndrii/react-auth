@@ -1,10 +1,11 @@
 import { Box, List, Button, AppBar } from '@mui/material';
 import { NavLink, Outlet } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
-import handleSignOut from '../../helpers/signout';
+import { useAuth } from '../../helpers/authContext';
+import useSignOut from '../../hooks/signout';
 
 function Layout() {
   const { user, loading } = useAuth();
+  const handleSignOut = useSignOut();
   if (loading) return <div>Завантаження...</div>;
   return (
     <Box sx={{ margin: '20px', paddingTop: '50px' }}>
