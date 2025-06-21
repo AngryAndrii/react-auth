@@ -17,9 +17,11 @@ function SignIn() {
     const password = data.password;
 
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         const user = userCredential.user;
         console.log('Успішний вхід:', user.displayName);
+        // const token = await user.getIdToken();
+        // console.log(token);
         goTo('/profile');
       })
       .catch((error) => {

@@ -21,7 +21,7 @@ function Register() {
     const password = data.password;
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         const user = userCredential.user;
 
         updateProfile(user, {
@@ -31,7 +31,8 @@ function Register() {
             // Оновлюємо глобальний user у контексті з новим displayName
             setUser({ ...user, displayName: name });
             console.log('Нікнейм збережено:', name);
-
+            // const token = await user.getIdToken();
+            // console.log(token);
             goTo('/profile'); // переходимо на профіль
           })
           .catch((error) => {
