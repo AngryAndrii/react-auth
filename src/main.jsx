@@ -11,6 +11,18 @@ const theme = createTheme({
   typography: {
     fontFamily: 'Nunito',
   },
+  palette: {
+    primary: {
+      main: '#2E2E2E',
+      light: '#839A82',
+      text: '#FFF',
+    },
+    secondary: {
+      main: '#3E3D3D',
+      light: '#5C6C5A',
+      dark: '#000',
+    },
+  },
 });
 
 createRoot(document.getElementById('root')).render(

@@ -13,7 +13,7 @@ import {
 
 const StatChart = ({ data }) => {
   return (
-    <Box sx={{ width: 'auto', height: '500px', border: '1px solid tomato' }}>
+    <Box sx={{ width: 'auto', height: '500px', border: '5px solid', borderColor: 'primary.light' }}>
       {/* <LineChart width={800} height={400} data={data}>
         <Line type='monotone' dataKey='uv' stroke='#8884d8' />
         <CartesianGrid stroke='#ccc' />
