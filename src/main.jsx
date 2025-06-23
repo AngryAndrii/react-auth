@@ -8,6 +8,9 @@ import App from './App.jsx';
 import { AuthProvider } from './helpers/authContext.jsx';
 
 const theme = createTheme({
+  input: {
+    color: 'white',
+  },
   typography: {
     fontFamily: 'Nunito',
   },
