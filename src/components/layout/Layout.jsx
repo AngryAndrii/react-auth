@@ -37,17 +37,17 @@ function Layout() {
               </ListItem>
               <ListItem disablePadding>
                 <NavLink className={'page-link'} to='/register'>
-                  Register page
+                  Register
                 </NavLink>
               </ListItem>
               <ListItem disablePadding>
                 <NavLink className={'page-link'} to='/login'>
-                  Login page
+                  Login
                 </NavLink>
               </ListItem>
               <ListItem disablePadding>
                 <NavLink className={'page-link'} to='/profile'>
-                  Profile page
+                  Profile
                 </NavLink>
               </ListItem>
             </List>
