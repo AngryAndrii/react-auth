@@ -8,7 +8,14 @@ import { useAuth } from '../../helpers/authContext';
 function Register() {
   const goTo = useRedirect();
   const { setUser } = useAuth(); // дістаємо setUser з контексту
-
+  const fieldStyle = {
+    backgroundColor: 'primary.light',
+    '.MuiFilledInput-root': {
+      input: {
+        color: 'black',
+      },
+    },
+  };
   const {
     register,
     handleSubmit,
@@ -53,17 +60,29 @@ function Register() {
       sx={{
         '& > :not(style)': { m: 1, width: '25ch' },
         display: 'flex',
+        alignItems: 'center',
         flexDirection: 'column',
+        backgroundColor: 'secondary.light',
+        margin: '0 auto',
+        width: 'fit-content',
+        maxWidth: '100vw',
       }}
       noValidate
       autoComplete='off'
     >
-      <TextField {...register('nickname')} label='Nickname' variant='filled' type='text' />
+      <TextField
+        {...register('nickname')}
+        label='Nickname'
+        variant='filled'
+        type='text'
+        sx={fieldStyle}
+      />
       <TextField
         {...register('email', { required: true })}
         label='Email'
         type='email'
         variant='filled'
+        sx={fieldStyle}
       />
       <TextField
         {...register('password', { required: true })}
@@ -71,9 +90,10 @@ function Register() {
         type='password'
         autoComplete='current-password'
         variant='filled'
+        sx={fieldStyle}
       />
       {errors.exampleRequired && <span>This field is required</span>}
-      <Button variant='outlined' type='submit'>
+      <Button variant='contained' type='submit' sx={{ backgroundColor: 'primary.main' }}>
         Submit
       </Button>
     </Box>
