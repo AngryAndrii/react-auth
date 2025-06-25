@@ -1,9 +1,10 @@
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../../firebase/firebaseConfig';
 import useRedirect from '../../hooks/useRedirect';
 import { useAuth } from '../../helpers/authContext';
+import { ErrorMessage } from '@hookform/error-message';
 
 function Register() {
   const goTo = useRedirect();
@@ -20,7 +21,7 @@ function Register() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ mode: 'onChange' });
 
   const onSubmit = (data) => {
     const name = data.nickname;
@@ -54,48 +55,61 @@ function Register() {
   };
 
   return (
-    <Box
-      onSubmit={handleSubmit(onSubmit)}
-      component='form'
-      sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column',
-        backgroundColor: 'secondary.light',
-        margin: '0 auto',
-        width: 'fit-content',
-        maxWidth: '100vw',
-      }}
-      noValidate
-      autoComplete='off'
-    >
-      <TextField
-        {...register('nickname')}
-        label='Nickname'
-        variant='filled'
-        type='text'
-        sx={fieldStyle}
-      />
-      <TextField
-        {...register('email', { required: true })}
-        label='Email'
-        type='email'
-        variant='filled'
-        sx={fieldStyle}
-      />
-      <TextField
-        {...register('password', { required: true })}
-        label='Password'
-        type='password'
-        autoComplete='current-password'
-        variant='filled'
-        sx={fieldStyle}
-      />
-      {errors.exampleRequired && <span>This field is required</span>}
-      <Button variant='contained' type='submit' sx={{ backgroundColor: 'primary.main' }}>
-        Submit
-      </Button>
+    <Box sx={{ paddingTop: '100px' }}>
+      <Box
+        onSubmit={handleSubmit(onSubmit)}
+        component='form'
+        sx={{
+          '& > :not(style)': { m: 1, width: '25ch' },
+          display: 'flex',
+          alignItems: 'center',
+          flexDirection: 'column',
+          backgroundColor: 'secondary.light',
+          margin: '0 auto',
+          width: 'fit-content',
+          maxWidth: '100vw',
+        }}
+        noValidate
+        autoComplete='off'
+      >
+        <TextField
+          {...register('nickname', {
+            required: 'This field is required',
+            maxLength: { value: 20, message: 'max lenght is 20 symbols' },
+            minLength: { value: 3, message: 'min lenght is 3 symbols' },
+            pattern: {
+              value: /^[a-zA-Zа-яА-ЯїЇєЄіІґҐ0-9]+$/,
+              message: 'Only letters and numbers are allowed',
+            },
+          })}
+          label='Nickname'
+          variant='filled'
+          type='text'
+          sx={fieldStyle}
+        />
+        {errors.nickname && (
+          <p style={{ color: 'red', fontSize: '0.9rem' }}>{errors.nickname.message}</p>
+        )}
+        <TextField
+          {...register('email', { required: true })}
+          label='Email'
+          type='email'
+          variant='filled'
+          sx={fieldStyle}
+        />
+        <TextField
+          {...register('password', { required: true })}
+          label='Password'
+          type='password'
+          autoComplete='current-password'
+          variant='filled'
+          sx={fieldStyle}
+        />
+
+        <Button variant='contained' type='submit' sx={{ backgroundColor: 'primary.main' }}>
+          Submit
+        </Button>
+      </Box>
     </Box>
   );
 }

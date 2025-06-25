@@ -1,8 +1,16 @@
-import { Box, List, Button, AppBar, ListItem, ListItemText, ListItemButton } from '@mui/material';
-import { NavLink, Outlet } from 'react-router-dom';
-import { useAuth } from '../../helpers/authContext';
-import useSignOut from '../../hooks/signout';
-import StyledLayout from '../layout/layout.styled';
+import {
+  Box,
+  List,
+  Button,
+  AppBar,
+  ListItem,
+  ListItemText,
+  ListItemButton,
+} from "@mui/material";
+import { NavLink, Outlet } from "react-router-dom";
+import { useAuth } from "../../helpers/authContext";
+import useSignOut from "../../hooks/signout";
+import StyledLayout from "../layout/layout.styled";
 
 function Layout() {
   const { user, loading } = useAuth();
@@ -10,58 +18,62 @@ function Layout() {
   if (loading) return <div>Завантаження...</div>;
   return (
     <StyledLayout>
-      <Box sx={{ margin: '20px', paddingTop: '50px' }}>
+      <Box>
         <AppBar
           sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            padding: '5px 25px',
-            backgroundColor: 'primary.light',
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            padding: "5px 25px",
+            backgroundColor: "primary.light",
           }}
         >
           <nav>
             <List
               sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                columnGap: '10px',
-                color: 'primary.text',
-                textDecoration: 'none',
+                display: "flex",
+                flexDirection: "row",
+                columnGap: "10px",
+                color: "primary.text",
+                textDecoration: "none",
               }}
             >
               <ListItem disablePadding>
-                <NavLink className={'page-link'} to='/'>
+                <NavLink className={"page-link"} to="/">
                   Home
                 </NavLink>
               </ListItem>
               <ListItem disablePadding>
-                <NavLink className={'page-link'} to='/register'>
-                  Register page
+                <NavLink className={"page-link"} to="/register">
+                  Register
                 </NavLink>
               </ListItem>
               <ListItem disablePadding>
-                <NavLink className={'page-link'} to='/login'>
-                  Login page
+                <NavLink className={"page-link"} to="/login">
+                  Login
                 </NavLink>
               </ListItem>
               <ListItem disablePadding>
-                <NavLink className={'page-link'} to='/profile'>
-                  Profile page
+                <NavLink className={"page-link"} to="/profile">
+                  Profile
                 </NavLink>
               </ListItem>
             </List>
           </nav>
           <Box
             sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              columnGap: '20px',
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              columnGap: "20px",
             }}
           >
             <Box>{user?.displayName}</Box>
-            <Button variant='contained' onClick={handleSignOut}>
+            <Button
+              variant="contained"
+              onClick={handleSignOut}
+              sx={{ backgroundColor: "primary.main" }}
+            >
               Logout
             </Button>
           </Box>
