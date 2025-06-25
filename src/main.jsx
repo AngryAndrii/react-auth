@@ -26,6 +26,15 @@ const theme = createTheme({
       dark: "#000",
     },
   },
+  breakpoints: {
+    values: {
+      xs: 320,
+      sm: 460,
+      md: 720,
+      lg: 1280,
+      xl: 1800,
+    },
+  },
 });
 
 createRoot(document.getElementById("root")).render(

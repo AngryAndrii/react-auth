@@ -18,7 +18,7 @@ function Layout() {
   if (loading) return <div>Завантаження...</div>;
   return (
     <StyledLayout>
-      <Box sx={{ margin: "20px", paddingTop: "50px" }}>
+      <Box>
         <AppBar
           sx={{
             display: "flex",

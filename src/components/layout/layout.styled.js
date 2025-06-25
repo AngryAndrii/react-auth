@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 const StyledLayout = styled.div`
   width: 100vw;
@@ -18,6 +18,7 @@ const StyledLayout = styled.div`
     text-decoration: underline;
     font-weight: 600;
   }
+  /* padding: 0; */
 `;
 
 export default StyledLayout;
