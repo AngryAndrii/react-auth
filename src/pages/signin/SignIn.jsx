@@ -34,6 +34,7 @@ function SignIn() {
       })
       .catch((error) => {
         console.error("Error:", error.code, error.message);
+        alert(error.message);
       });
   };
 
@@ -56,21 +57,44 @@ function SignIn() {
         autoComplete="off"
       >
         <TextField
-          {...register("email", { required: true })}
+          {...register("email", {
+            required: "Email field is required",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              message: "invalid email",
+            },
+          })}
           label="Email"
-          type="mail"
+          type="email"
           variant="filled"
           sx={fieldStyle}
         />
+        {errors.email && (
+          <p style={{ color: "red", fontSize: "0.9rem" }}>
+            {errors.email.message}
+          </p>
+        )}
         <TextField
-          {...register("password", { required: true })}
+          {...register("password", {
+            required: "This field is required",
+            maxLength: { value: 25, message: "max lenght is 25 symbols" },
+            minLength: { value: 6, message: "min lenght is 6 symbols" },
+            pattern: {
+              value: /^[a-zA-Z0-9]+$/,
+              message: "Only letters and numbers are allowed",
+            },
+          })}
           label="Password"
           type="password"
           autoComplete="current-password"
           variant="filled"
           sx={fieldStyle}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
+        {errors.password && (
+          <p style={{ color: "red", fontSize: "0.9rem" }}>
+            {errors.password.message}
+          </p>
+        )}
         <Button
           variant="contained"
           type="submit"
