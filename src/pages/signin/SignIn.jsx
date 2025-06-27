@@ -1,8 +1,9 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { auth } from "../../firebase/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import useRedirect from "../../hooks/useRedirect";
+import { NavLink } from "react-router-dom";
 
 function SignIn() {
   const goTo = useRedirect();
@@ -34,11 +35,12 @@ function SignIn() {
       })
       .catch((error) => {
         console.error("Error:", error.code, error.message);
+        alert(error.message);
       });
   };
 
   return (
-    <Box sx={{ paddingTop: "150px" }}>
+    <Box sx={{ paddingTop: "150px", border: "1px solid red" }}>
       <Box
         onSubmit={handleSubmit(onSubmit)}
         component="form"
@@ -56,21 +58,44 @@ function SignIn() {
         autoComplete="off"
       >
         <TextField
-          {...register("email", { required: true })}
+          {...register("email", {
+            required: "Email field is required",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              message: "invalid email",
+            },
+          })}
           label="Email"
-          type="mail"
+          type="email"
           variant="filled"
           sx={fieldStyle}
         />
+        {errors.email && (
+          <p style={{ color: "red", fontSize: "0.9rem" }}>
+            {errors.email.message}
+          </p>
+        )}
         <TextField
-          {...register("password", { required: true })}
+          {...register("password", {
+            required: "This field is required",
+            maxLength: { value: 25, message: "max lenght is 25 symbols" },
+            minLength: { value: 6, message: "min lenght is 6 symbols" },
+            pattern: {
+              value: /^[a-zA-Z0-9]+$/,
+              message: "Only letters and numbers are allowed",
+            },
+          })}
           label="Password"
           type="password"
           autoComplete="current-password"
           variant="filled"
           sx={fieldStyle}
         />
-        {errors.exampleRequired && <span>This field is required</span>}
+        {errors.password && (
+          <p style={{ color: "red", fontSize: "0.9rem" }}>
+            {errors.password.message}
+          </p>
+        )}
         <Button
           variant="contained"
           type="submit"
@@ -78,6 +103,18 @@ function SignIn() {
         >
           Sign In
         </Button>
+      </Box>
+      <Box sx={{ border: "1px solid green", textAlign: "center" }}>
+        <Typography
+          variant="p"
+          sx={{ color: "primary.text", fontSize: "16px" }}
+        >
+          Not registered yet? go to the{" "}
+          <NavLink className="page-link" to="/register">
+            registration
+          </NavLink>
+          page
+        </Typography>
       </Box>
     </Box>
   );

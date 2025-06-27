@@ -1,5 +1,5 @@
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { auth } from './firebaseConfig';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebaseConfig";
 
 const checkUser = (auth, user) => {
   onAuthStateChanged(auth, (user) => {
@@ -7,7 +7,7 @@ const checkUser = (auth, user) => {
       const uid = user.uid;
       console.log(uid);
     } else {
-      console.log('user not signed');
+      console.log("user not signed");
     }
   });
 };
