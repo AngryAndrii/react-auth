@@ -1,8 +1,9 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { auth } from "../../firebase/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import useRedirect from "../../hooks/useRedirect";
+import { NavLink } from "react-router-dom";
 
 function SignIn() {
   const goTo = useRedirect();
@@ -39,7 +40,7 @@ function SignIn() {
   };
 
   return (
-    <Box sx={{ paddingTop: "150px" }}>
+    <Box sx={{ paddingTop: "150px", border: "1px solid red" }}>
       <Box
         onSubmit={handleSubmit(onSubmit)}
         component="form"
@@ -102,6 +103,18 @@ function SignIn() {
         >
           Sign In
         </Button>
+      </Box>
+      <Box sx={{ border: "1px solid green", textAlign: "center" }}>
+        <Typography
+          variant="p"
+          sx={{ color: "primary.text", fontSize: "16px" }}
+        >
+          Not registered yet? go to the{" "}
+          <NavLink className="page-link" to="/register">
+            registration
+          </NavLink>
+          page
+        </Typography>
       </Box>
     </Box>
   );

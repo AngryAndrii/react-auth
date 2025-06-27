@@ -43,21 +43,27 @@ function Layout() {
                   Home
                 </NavLink>
               </ListItem>
-              <ListItem disablePadding>
-                <NavLink className={"page-link"} to="/register">
-                  Register
-                </NavLink>
-              </ListItem>
-              <ListItem disablePadding>
-                <NavLink className={"page-link"} to="/login">
-                  Login
-                </NavLink>
-              </ListItem>
-              <ListItem disablePadding>
-                <NavLink className={"page-link"} to="/profile">
-                  Profile
-                </NavLink>
-              </ListItem>
+              {!user && (
+                <>
+                  <ListItem disablePadding>
+                    <NavLink className="page-link" to="/login">
+                      Login
+                    </NavLink>
+                  </ListItem>
+                  <ListItem disablePadding>
+                    <NavLink className="page-link" to="/register">
+                      Register
+                    </NavLink>
+                  </ListItem>
+                </>
+              )}
+              {user?.displayName && (
+                <ListItem disablePadding>
+                  <NavLink className={"page-link"} to="/profile">
+                    Profile
+                  </NavLink>
+                </ListItem>
+              )}
             </List>
           </nav>
           <Box
