@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 const StyledLayout = styled.div`
   width: 100vw;
@@ -6,12 +6,25 @@ const StyledLayout = styled.div`
   background-color: #2e2e2e;
   .page-link {
     color: black;
+    color: red;
     text-decoration: none;
     font-size: 18px;
   }
 
   .page-link:visited {
     color: black;
+  }
+
+  .page-link.underform {
+    color: #839a82;
+    text-decoration: underline;
+    padding: 0 5px;
+  }
+
+  .page-link:visited.underform {
+    color: rgb(135, 181, 134);
+    text-decoration: underline;
+    padding: 0 5px;
   }
 
   .active {
