@@ -29,8 +29,8 @@ function SignIn() {
       .then(async (userCredential) => {
         const user = userCredential.user;
         console.log('Успішний вхід:', user.displayName);
-        // const token = await user.getIdToken();
-        // console.log(token);
+        const token = await user.getIdToken();
+        console.log(token);
         goTo('/profile');
       })
       .catch((error) => {
