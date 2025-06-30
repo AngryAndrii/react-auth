@@ -6,14 +6,16 @@ import getData from '../../helpers/fetch';
 import { useEffect, useState } from 'react';
 
 function Profile() {
-  const { user, loading } = useAuth();
-  const [fetchData, setFetchData] = useState([]);
+  const { user, uid, token, loading } = useAuth();
+  const [fetchData, setFetchData] = useState({});
 
   useEffect(() => {
+    if (!uid || !token) return;
     const getInfo = async () => {
       try {
-        const response = await getData();
+        const response = await getData(uid, token);
         const data = response.data;
+        // console.log(data);
         setFetchData(data);
       } catch (error) {
         console.error(error);
@@ -29,8 +31,14 @@ function Profile() {
     <Box sx={{ paddingTop: '50px' }}>
       It is Profile page of <Box sx={{ fontSize: '35px', fontWeight: 'bold' }}>{user?.email}</Box>
       <Box sx={{ color: 'primary.text' }}>
-        {fetchData.length > 0 ? (
-          fetchData.slice(0, 5).map((item) => <div key={item.id}>{item.title}</div>)
+        {fetchData && Object.keys(fetchData).length > 0 ? (
+          Object.entries(fetchData).map(([date, stats]) => (
+            <div key={date}>
+              <p>{date}</p>
+              <p> {stats.pullups} pullups</p>
+              <p>{stats.pushups} pushups</p>
+            </div>
+          ))
         ) : (
           <Box>Завантаження даних...</Box>
         )}
