@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box } from "@mui/material";
 import {
   Bar,
   BarChart,
@@ -9,34 +9,38 @@ import {
   Tooltip,
   XAxis,
   YAxis,
-} from 'recharts';
+} from "recharts";
 
-const StatChart = ({ data }) => {
+const StatChart = ({ data, activity }) => {
+  console.log(data);
   return (
-    <Box sx={{ width: 'auto', height: '500px', border: '5px solid', borderColor: 'primary.light' }}>
-      {/* <LineChart width={800} height={400} data={data}>
-        <Line type='monotone' dataKey='uv' stroke='#8884d8' />
-        <CartesianGrid stroke='#ccc' />
-        <XAxis dataKey='name' />
+    <Box
+      sx={{
+        width: "auto",
+        height: "500px",
+        border: "5px solid",
+        borderColor: "primary.light",
+      }}
+    >
+      <BarChart width={600} height={400} data={data}>
+        <XAxis dataKey="name" stroke="#8884d8" />
         <YAxis />
-      </LineChart> */}
-      <BarChart width={800} height={500} data={data}>
-        <XAxis dataKey='name' stroke='#8884d8' />
-        <YAxis />
-        <Tooltip wrapperStyle={{ width: 100, backgroundColor: '#ccc' }} />
+        <Tooltip wrapperStyle={{ width: 120, backgroundColor: "#ccc" }} />
         <Legend
           width={100}
           wrapperStyle={{
             top: 40,
             right: 20,
-            backgroundColor: '#f5f5f5',
-            border: '1px solid #d5d5d5',
+            backgroundColor: "#f5f5f5",
+            border: "1px solid #d5d5d5",
             borderRadius: 3,
-            lineHeight: '40px',
+            lineHeight: "40px",
           }}
         />
-        <CartesianGrid stroke='#ccc' strokeDasharray='5 5' />
-        <Bar dataKey='uv' fill='#8884d8' barSize={30} />
+        <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+        {["pushups", "pullups"].includes(activity) && (
+          <Bar dataKey={activity} fill="#8884d8" barSize={40} />
+        )}
       </BarChart>
     </Box>
   );
