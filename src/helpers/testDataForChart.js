@@ -1,14 +1,11 @@
 const data = [
-  { name: '2025-06-01', uv: 400, pv: 2400, amt: 2400 },
-  { name: '2025-06-02', uv: 320, pv: 1500, amt: 2200 },
-  { name: '2025-06-03', uv: 615, pv: 1700, amt: 19000 },
-  { name: '2025-06-04', uv: 480, pv: 2100, amt: 2000 },
-  { name: '2025-06-05', uv: 300, pv: 1300, amt: 1800 },
-  { name: '2025-06-06', uv: 100, pv: 2400, amt: 2400 },
-  { name: '2025-06-07', uv: 320, pv: 1500, amt: 2200 },
-  { name: '2025-06-08', uv: 340, pv: 1700, amt: 19000 },
-  { name: '2025-06-09', uv: 305, pv: 2100, amt: 2000 },
-  { name: '2025-06-10', uv: 600, pv: 1300, amt: 1800 },
+  { name: "2025-06-14", pullups: 12, pushups: 25 },
+  { name: "2025-06-17", pullups: 15, pushups: 20 },
+  { name: "2025-06-22", pullups: 8, pushups: 18 },
+  { name: "2025-06-24", pullups: 6, pushups: 25 },
+  { name: "2025-06-28", pullups: 0, pushups: 28 },
+  { name: "2025-07-01", pullups: 13, pushups: 15 },
+  { name: "2025-07-02", pullups: 15, pushups: 19 },
 ];
 
 export default data;
