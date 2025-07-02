@@ -4,7 +4,7 @@ import Register from "./pages/register/Register";
 import Layout from "./components/layout/Layout";
 import Profile from "./pages/profile/Profile";
 import NotFound from "./pages/notfound/NotFound";
-import SignIn from "./pages/signin/Signin";
+import SignIn from "./pages/signin/SignIn";
 import PrivateRoute from "./helpers/PrivateRoute";
 
 function App() {
