@@ -40,7 +40,7 @@ function Profile() {
 
   return (
     <Box sx={{ paddingTop: "50px" }}>
-      It is Profile page of{" "}
+      // It is Profile page of
       <Box sx={{ fontSize: "35px", fontWeight: "bold" }}>{user?.email}</Box>
       <Box>
         <FormControl sx={{ color: "primary.text" }}>
