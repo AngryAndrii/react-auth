@@ -129,7 +129,7 @@ function Register() {
           Submit
         </Button>
       </Box>
-      <Box sx={{ border: '1px solid green', textAlign: 'center', marginTop: '10px' }}>
+      <Box sx={{ textAlign: 'center', marginTop: '10px' }}>
         <Typography variant='p' sx={{ color: 'primary.text', fontSize: '16px' }}>
           Already registered?
           <NavLink className='page-link underform' to='/login'>

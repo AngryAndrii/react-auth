@@ -1,12 +1,11 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 const StyledLayout = styled.div`
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   background-color: #2e2e2e;
   .page-link {
     color: black;
-    color: red;
     text-decoration: none;
     font-size: 18px;
   }
