@@ -11,7 +11,12 @@ function Home() {
         height: '100vh',
         padding: '50px',
         backgroundImage: `url(${runImage})`,
-        backgroundSize: 'cover',
+        backgroundSize: {
+          xs: 'cover',
+          sm: 'cover',
+          md: 'cover',
+          lg: 'cover',
+        },
         backgroundPosition: {
           xs: 'right',
           sm: 'right',
@@ -21,20 +26,11 @@ function Home() {
         backgroundRepeat: 'no-repeat',
       }}
     >
-      <Typography variant='h1' sx={{ color: 'white' }}>
+      <Typography variant='h2' sx={{ color: 'white' }}>
         your personal habit tracker
       </Typography>
-      <Typography variant='h3' sx={{ color: 'white' }}>
+      <Typography variant='h4' sx={{ color: 'white' }}>
         start simple - track your push-ups daily 💪
-      </Typography>
-      <Typography variant='p' sx={{ color: 'white' }}>
-        This site is designed for those who want to develop discipline and see their progress. Start
-        small - note how many push-ups you did every day. Over time, you can add other habits:
-        drinking water, reading, learning words, and more.
-      </Typography>
-      <Typography variant='p' sx={{ color: 'white' }}>
-        🔹 Easy to use 🔹 Motivates you not to miss 🔹 A graph of your progress - clearly and simply
-        Start today. One day is already a step forward.
       </Typography>
     </Box>
   );
