@@ -34,7 +34,7 @@ function SendTodayActivity() {
   // patchData(uid, token,);
 
   return (
-    <Box sx={{ p: 2, backgroundColor: '#121212' }}>
+    <Box sx={{ p: 2, backgroundColor: '#121212', width: '300px', margin: '0 auto' }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormControl fullWidth sx={{ mt: 2 }}>
           <InputLabel
