@@ -1,16 +1,42 @@
-import { Box, List, Button, AppBar, ListItem, ListItemText, ListItemButton } from '@mui/material';
+import {
+  Box,
+  List,
+  Button,
+  AppBar,
+  ListItem,
+  ListItemText,
+  ListItemButton,
+  IconButton,
+  Menu,
+  MenuItem,
+  Typography,
+} from '@mui/material';
 import { NavLink, Outlet } from 'react-router-dom';
 import { useAuth } from '../../helpers/authContext';
 import useSignOut from '../../hooks/signout';
 import StyledLayout from '../layout/layout.styled';
 import logo from '../../assets/logo.svg';
 import useRedirect from '../../hooks/useRedirect';
+import { useState } from 'react';
+import MenuIcon from '@mui/icons-material/Menu';
+
+const pages = ['Home', 'Login', 'Register'];
 
 function Layout() {
+  const [anchorElNav, setAnchorElNav] = useState(null);
   const { user, loading } = useAuth();
   const handleSignOut = useSignOut();
   const handleLogin = useRedirect();
   if (loading) return <div>Завантаження...</div>;
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
   return (
     <StyledLayout>
       <Box>
@@ -23,7 +49,41 @@ function Layout() {
             backgroundColor: 'primary.light',
           }}
         >
-          <nav>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size='large'
+              aria-label='account of current user'
+              aria-controls='menu-appbar'
+              aria-haspopup='true'
+              onClick={handleOpenNavMenu}
+              color='inherit'
+            >
+              <MenuIcon />
+            </IconButton>
+          </Box>
+          <Menu
+            id='menu-appbar'
+            anchorEl={anchorElNav}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            open={Boolean(anchorElNav)}
+            onClose={handleCloseNavMenu}
+            sx={{ display: { xs: 'block', md: 'none' } }}
+          >
+            {pages.map((page) => (
+              <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+              </MenuItem>
+            ))}
+          </Menu>
+          {/* <nav>
             <List
               sx={{
                 display: 'flex',
@@ -67,7 +127,7 @@ function Layout() {
                 </ListItem>
               )}
             </List>
-          </nav>
+          </nav> */}
           <Box
             sx={{
               display: 'flex',
