@@ -26,6 +26,7 @@ const pages = [
   { label: 'Register', path: '/register' },
 ];
 
+
 function Layout() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const { user, loading } = useAuth();
