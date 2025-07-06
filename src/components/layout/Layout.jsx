@@ -65,6 +65,11 @@ function Layout() {
               <MenuIcon />
             </IconButton>
           </Box>
+          <ListItem disablePadding>
+            <NavLink className={'page-link'} to='/'>
+              <img src={logo} alt='Логотип' />
+            </NavLink>
+          </ListItem>
           <Menu
             id='menu-appbar'
             anchorEl={anchorElNav}
@@ -89,13 +94,26 @@ function Layout() {
               </MenuItem>
             ))}
           </Menu>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <List
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              columnGap: '10px',
+              color: 'primary.text',
+              textDecoration: 'none',
+              alignItems: 'flex-end',
+              padding: 0,
+              display: { xs: 'none', md: 'flex' },
+            }}
+          >
             {pages.map(({ label, path }) => (
-              <NavLink to={path} style={{ textDecoration: 'none', color: 'inherit' }}>
-                <Typography textAlign='center'>{label}</Typography>
-              </NavLink>
+              <ListItem disablePadding>
+                <NavLink to={path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <Typography textAlign='center'>{label}</Typography>
+                </NavLink>
+              </ListItem>
             ))}
-          </Box>
+          </List>
           {/* <nav>
             <List
               sx={{
