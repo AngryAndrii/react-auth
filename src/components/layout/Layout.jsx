@@ -20,7 +20,12 @@ import useRedirect from '../../hooks/useRedirect';
 import { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 
-const pages = ['Home', 'Login', 'Register'];
+const pages = [
+  { label: 'Home', path: '/' },
+  { label: 'Login', path: '/login' },
+  { label: 'Register', path: '/register' },
+];
+
 
 function Layout() {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -61,6 +66,11 @@ function Layout() {
               <MenuIcon />
             </IconButton>
           </Box>
+          <ListItem disablePadding>
+            <NavLink className={'page-link'} to='/'>
+              <img src={logo} alt='Логотип' />
+            </NavLink>
+          </ListItem>
           <Menu
             id='menu-appbar'
             anchorEl={anchorElNav}
@@ -77,12 +87,34 @@ function Layout() {
             onClose={handleCloseNavMenu}
             sx={{ display: { xs: 'block', md: 'none' } }}
           >
-            {pages.map((page) => (
-              <MenuItem key={page} onClick={handleCloseNavMenu}>
-                <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+            {pages.map(({ label, path }) => (
+              <MenuItem key={label} onClick={handleCloseNavMenu}>
+                <NavLink to={path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <Typography textAlign='center'>{label}</Typography>
+                </NavLink>
               </MenuItem>
             ))}
           </Menu>
+          <List
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              columnGap: '10px',
+              color: 'primary.text',
+              textDecoration: 'none',
+              alignItems: 'flex-end',
+              padding: 0,
+              display: { xs: 'none', md: 'flex' },
+            }}
+          >
+            {pages.map(({ label, path }) => (
+              <ListItem disablePadding>
+                <NavLink to={path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <Typography textAlign='center'>{label}</Typography>
+                </NavLink>
+              </ListItem>
+            ))}
+          </List>
           {/* <nav>
             <List
               sx={{
