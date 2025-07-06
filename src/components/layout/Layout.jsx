@@ -20,7 +20,11 @@ import useRedirect from '../../hooks/useRedirect';
 import { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 
-const pages = ['Home', 'Login', 'Register'];
+const pages = [
+  { label: 'Home', path: '/' },
+  { label: 'Login', path: '/login' },
+  { label: 'Register', path: '/register' },
+];
 
 function Layout() {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -77,12 +81,21 @@ function Layout() {
             onClose={handleCloseNavMenu}
             sx={{ display: { xs: 'block', md: 'none' } }}
           >
-            {pages.map((page) => (
-              <MenuItem key={page} onClick={handleCloseNavMenu}>
-                <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+            {pages.map(({ label, path }) => (
+              <MenuItem key={label} onClick={handleCloseNavMenu}>
+                <NavLink to={path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <Typography textAlign='center'>{label}</Typography>
+                </NavLink>
               </MenuItem>
             ))}
           </Menu>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {pages.map(({ label, path }) => (
+              <NavLink to={path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Typography textAlign='center'>{label}</Typography>
+              </NavLink>
+            ))}
+          </Box>
           {/* <nav>
             <List
               sx={{
