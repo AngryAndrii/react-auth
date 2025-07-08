@@ -43,16 +43,16 @@ function Layout() {
 
   return (
     <StyledLayout>
-      <Box>
-        <AppBar
-          sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            padding: '5px 25px',
-            backgroundColor: 'primary.light',
-          }}
-        >
+      <AppBar
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          padding: '5px 25px',
+          backgroundColor: 'primary.light',
+        }}
+      >
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', columnGap: '20px' }}>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size='large'
@@ -65,11 +65,10 @@ function Layout() {
               <MenuIcon />
             </IconButton>
           </Box>
-          <ListItem disablePadding>
-            <NavLink className={'page-link'} to='/'>
-              <img src={logo} alt='Логотип' />
-            </NavLink>
-          </ListItem>
+          <NavLink className={'page-link'} to='/'>
+            <img src={logo} alt='Логотип' />
+          </NavLink>
+
           <Menu
             id='menu-appbar'
             anchorEl={anchorElNav}
@@ -96,7 +95,6 @@ function Layout() {
           </Menu>
           <List
             sx={{
-              display: 'flex',
               flexDirection: 'row',
               columnGap: '10px',
               color: 'primary.text',
@@ -114,7 +112,8 @@ function Layout() {
               </ListItem>
             ))}
           </List>
-          {/* <nav>
+        </Box>
+        {/* <nav>
             <List
               sx={{
                 display: 'flex',
@@ -159,42 +158,41 @@ function Layout() {
               )}
             </List>
           </nav> */}
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              columnGap: '20px',
-            }}
-          >
-            <Box>{user?.displayName}</Box>
-            {!user && (
-              <Button
-                variant='contained'
-                onClick={() => {
-                  handleLogin('/login');
-                }}
-                sx={{ backgroundColor: 'primary.main' }}
-              >
-                Login
-              </Button>
-            )}
-            {user && (
-              <Button
-                variant='contained'
-                onClick={handleSignOut}
-                sx={{ backgroundColor: 'primary.main' }}
-              >
-                Logout
-              </Button>
-            )}
-          </Box>
-        </AppBar>
-        <main>
-          <Outlet />
-        </main>
-        <footer>{/* <p>&copy; 2025 Angry Andrii</p> */}</footer>
-      </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            columnGap: '20px',
+          }}
+        >
+          <Box>{user?.displayName}</Box>
+          {!user && (
+            <Button
+              variant='contained'
+              onClick={() => {
+                handleLogin('/login');
+              }}
+              sx={{ backgroundColor: 'primary.main' }}
+            >
+              Login
+            </Button>
+          )}
+          {user && (
+            <Button
+              variant='contained'
+              onClick={handleSignOut}
+              sx={{ backgroundColor: 'primary.main' }}
+            >
+              Logout
+            </Button>
+          )}
+        </Box>
+      </AppBar>
+      <main>
+        <Outlet />
+      </main>
+      <footer>{/* <p>&copy; 2025 Angry Andrii</p> */}</footer>
     </StyledLayout>
   );
 }
