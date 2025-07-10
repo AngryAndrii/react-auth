@@ -93,25 +93,51 @@ function Layout() {
               </MenuItem>
             ))}
           </Menu>
-          <List
-            sx={{
-              flexDirection: 'row',
-              columnGap: '10px',
-              color: 'primary.text',
-              textDecoration: 'none',
-              alignItems: 'flex-end',
-              padding: 0,
-              display: { xs: 'none', md: 'flex' },
-            }}
-          >
-            {pages.map(({ label, path }) => (
+          {!user && (
+            <List
+              sx={{
+                flexDirection: 'row',
+                columnGap: '10px',
+                color: 'primary.text',
+                textDecoration: 'none',
+                alignItems: 'flex-end',
+                padding: 0,
+                display: { xs: 'none', md: 'flex' },
+              }}
+            >
+              {pages.map(({ label, path }) => (
+                <ListItem disablePadding>
+                  <NavLink to={path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Typography textAlign='center'>{label}</Typography>
+                  </NavLink>
+                </ListItem>
+              ))}
+            </List>
+          )}
+          {user?.displayName && (
+            <List
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                columnGap: '10px',
+                color: 'primary.text',
+                textDecoration: 'none',
+                alignItems: 'flex-end',
+                padding: 0,
+              }}
+            >
               <ListItem disablePadding>
-                <NavLink to={path} style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <Typography textAlign='center'>{label}</Typography>
+                <ListItem disablePadding>
+                  <NavLink className={'page-link'} to='/'>
+                    Home
+                  </NavLink>
+                </ListItem>
+                <NavLink className={'page-link'} to='/profile'>
+                  Profile
                 </NavLink>
               </ListItem>
-            ))}
-          </List>
+            </List>
+          )}
         </Box>
         {/* <nav>
             <List
