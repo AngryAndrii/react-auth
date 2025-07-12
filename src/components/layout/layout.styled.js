@@ -7,7 +7,12 @@ const StyledLayout = styled.div`
   .page-link {
     color: black;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 20px;
+  }
+
+  .page-link > p {
+    font-size: 19px;
+    font-weight: 500;
   }
 
   .page-link:visited {

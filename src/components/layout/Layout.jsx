@@ -17,22 +17,26 @@ import useSignOut from '../../hooks/signout';
 import StyledLayout from '../layout/layout.styled';
 import logo from '../../assets/logo.svg';
 import useRedirect from '../../hooks/useRedirect';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 
-const pages = [
+const pagesForNotLoginedUser = [
   { label: 'Home', path: '/' },
   { label: 'Login', path: '/login' },
   { label: 'Register', path: '/register' },
 ];
 
+const pagesForLoginedUser = [
+  { label: 'Home', path: '/' },
+  { label: 'Profile', path: '/profile' },
+];
 
 function Layout() {
   const [anchorElNav, setAnchorElNav] = useState(null);
+  const [pages, setPages] = useState(pagesForNotLoginedUser);
   const { user, loading } = useAuth();
   const handleSignOut = useSignOut();
   const handleLogin = useRedirect();
-  if (loading) return <div>Завантаження...</div>;
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -41,6 +45,16 @@ function Layout() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+  useEffect(() => {
+    if (user) {
+      setPages(pagesForLoginedUser);
+    } else {
+      setPages(pagesForNotLoginedUser);
+    }
+  }, [user]);
+
+  if (loading) return <div>Завантаження...</div>;
 
   return (
     <StyledLayout>
@@ -94,11 +108,12 @@ function Layout() {
               </MenuItem>
             ))}
           </Menu>
+
           <List
             sx={{
               flexDirection: 'row',
               columnGap: '10px',
-              color: 'primary.text',
+              color: 'secondary.dark',
               textDecoration: 'none',
               alignItems: 'flex-end',
               padding: 0,
@@ -107,7 +122,7 @@ function Layout() {
           >
             {pages.map(({ label, path }) => (
               <ListItem disablePadding>
-                <NavLink to={path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <NavLink to={path} className={'page-link'}>
                   <Typography textAlign='center'>{label}</Typography>
                 </NavLink>
               </ListItem>
