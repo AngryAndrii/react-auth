@@ -121,7 +121,7 @@ function Layout() {
             }}
           >
             {pages.map(({ label, path }) => (
-              <ListItem disablePadding>
+              <ListItem disablePadding key={path}>
                 <NavLink to={path} className={'page-link'}>
                   <Typography textAlign='center'>{label}</Typography>
                 </NavLink>
@@ -129,51 +129,6 @@ function Layout() {
             ))}
           </List>
         </Box>
-        {/* <nav>
-            <List
-              sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                columnGap: '10px',
-                color: 'primary.text',
-                textDecoration: 'none',
-                alignItems: 'flex-end',
-                padding: 0,
-              }}
-            >
-              <ListItem disablePadding>
-                <NavLink className={'page-link'} to='/'>
-                  <img src={logo} alt='Логотип' />
-                </NavLink>
-              </ListItem>
-              <ListItem disablePadding>
-                <NavLink className={'page-link'} to='/'>
-                  Home
-                </NavLink>
-              </ListItem>
-              {!user && (
-                <>
-                  <ListItem disablePadding>
-                    <NavLink className='page-link' to='/login'>
-                      Login
-                    </NavLink>
-                  </ListItem>
-                  <ListItem disablePadding>
-                    <NavLink className='page-link' to='/register'>
-                      Register
-                    </NavLink>
-                  </ListItem>
-                </>
-              )}
-              {user?.displayName && (
-                <ListItem disablePadding>
-                  <NavLink className={'page-link'} to='/profile'>
-                    Profile
-                  </NavLink>
-                </ListItem>
-              )}
-            </List>
-          </nav> */}
         <Box
           sx={{
             display: 'flex',

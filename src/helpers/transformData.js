@@ -2,7 +2,6 @@ import { getTodayFormattedDay } from './getTodayFormattedDate';
 
 const transformData = (formData) => {
   const date = getTodayFormattedDay();
-  //   const date = '2025-07-02';
   const { activity, amount } = formData;
 
   return {

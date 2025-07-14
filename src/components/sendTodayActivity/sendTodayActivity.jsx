@@ -10,11 +10,12 @@ import {
 } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 import { getTodayFormattedDay } from '../../helpers/getTodayFormattedDate';
-import transformData from '../../helpers/transformData,js';
+import transformData from '../../helpers/transformData.js';
 import { patchData } from '../../helpers/fetch';
 import { useAuth } from '../../helpers/authContext';
+import { listOfExercises } from '../../helpers/listOfExercises.js';
 
-function SendTodayActivity() {
+function SendTodayActivity({ onSend }) {
   const { user, uid, token, loading } = useAuth();
   const { handleSubmit, control } = useForm({
     defaultValues: {
@@ -27,11 +28,11 @@ function SendTodayActivity() {
       const formattedData = transformData(data);
       await patchData(uid, token, formattedData);
       console.log('Дані успішно надіслані');
+      onSend();
     } catch (error) {
       console.error('Помилка під час надсилання:', error);
     }
   };
-  // patchData(uid, token,);
 
   return (
     <Box sx={{ p: 2, backgroundColor: '#121212', width: '300px', margin: '0 auto' }}>
@@ -69,13 +70,31 @@ function SendTodayActivity() {
                   '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#999' },
                   '.MuiSvgIcon-root': { color: '#eee' }, // колір стрілочки
                 }}
+                MenuProps={{
+                  PaperProps: {
+                    sx: {
+                      backgroundColor: '#222', // фон всього випадаючого списку
+                      color: '#fff',
+                      padding: 0, // прибрати внутрішній padding
+                      '& .MuiMenuItem-root': {
+                        padding: '8px 12px', // стилі для кожного пункту
+                        '&:hover': {
+                          backgroundColor: '#8884d8',
+                        },
+                        '&.Mui-selected': {
+                          backgroundColor: 'secondary.dark',
+                        },
+                      },
+                    },
+                  },
+                }}
                 labelId='select-label'
                 label='Activity'
                 {...field}
               >
-                <MenuItem value={'pullups'}>Pullups</MenuItem>
-                <MenuItem value={'pushups'}>Pushups</MenuItem>
-                <MenuItem value={'crunches'}>Crunches</MenuItem>
+                {listOfExercises.map((el) => {
+                  return <MenuItem value={el.toLowerCase()}>{el}</MenuItem>;
+                })}
               </Select>
             )}
           />
