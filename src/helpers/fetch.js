@@ -5,6 +5,7 @@ export async function getData(uid, token) {
     const response = await axios.get(
       `https://react-auth-1867c-default-rtdb.europe-west1.firebasedatabase.app/users/${uid}/dailyStats.json?auth=${token}`,
     );
+    console.log(response);
     return response;
   } catch (error) {
     console.error(error);
