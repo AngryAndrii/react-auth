@@ -11,7 +11,8 @@ import {
   YAxis,
 } from 'recharts';
 
-const StatChart = ({ data, activity }) => {
+const StatChart = ({ activity, data }) => {
+  console.log(data);
   return (
     <Box
       sx={{
@@ -37,9 +38,7 @@ const StatChart = ({ data, activity }) => {
           }}
         />
         <CartesianGrid stroke='#ccc' strokeDasharray='5 5' />
-        {['pushups', 'pullups'].includes(activity) && (
-          <Bar dataKey={activity} fill='#8884d8' barSize={40} />
-        )}
+        {data.length > 0 && <Bar dataKey={activity} fill='#8884d8' barSize={40} />}
       </BarChart>
     </Box>
   );

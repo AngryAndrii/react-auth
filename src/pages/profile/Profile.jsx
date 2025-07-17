@@ -1,19 +1,34 @@
-import { Box, FormControl, FormLabel, FormControlLabel, RadioGroup, Radio } from '@mui/material';
+import {
+  Box,
+  FormControl,
+  FormLabel,
+  FormControlLabel,
+  RadioGroup,
+  Radio,
+  InputLabel,
+  Select,
+  MenuItem,
+} from '@mui/material';
 import { useAuth } from '../../helpers/authContext';
 import StatChart from '../../components/statChart/StatChart';
-import { getData } from '../../helpers/fetch';
 import { useEffect, useState } from 'react';
-import convertStatsToChartData from '../../helpers/conversationData';
 import SendTodayActivity from '../../components/sendTodayActivity/sendTodayActivity';
 import updateChart from '../../helpers/updateChart';
+import { listOfExercises } from '../../helpers/listOfExercises';
+import DroplistForActivity from '../../components/droplistForActivity/DroplistForActivity';
 
 function Profile() {
   const { user, uid, token, loading } = useAuth();
   const [chartData, setChartData] = useState({});
-  const [curentActivity, setCurentActivity] = useState('pullups');
+  const [activityForSend, setActivityForSend] = useState('pullups');
+  const [activityToShow, setActivityToShow] = useState('pullups');
 
   const handleChange = (event) => {
-    setCurentActivity(event.target.value);
+    setActivityForSend(event.target.value);
+  };
+
+  const handleChangeShow = (event) => {
+    setActivityToShow(event.target.value);
   };
 
   useEffect(() => {
@@ -27,29 +42,15 @@ function Profile() {
       // It is Profile page of
       <Box sx={{ fontSize: '35px', fontWeight: 'bold' }}>{user?.email}</Box>
       <SendTodayActivity onSend={updateChart} />
-      <Box>
-        <FormControl sx={{ color: 'primary.text' }}>
-          <FormLabel id='demo-controlled-radio-buttons-group'>Activity</FormLabel>
-          <RadioGroup
-            aria-labelledby='demo-controlled-radio-buttons-group'
-            name='controlled-radio-buttons-group'
-            value={curentActivity}
-            onChange={handleChange}
-          >
-            <FormControlLabel
-              value='pushups'
-              control={<Radio sx={{ color: 'primary.text' }} />}
-              label='Pushups'
-            />
-            <FormControlLabel
-              sx={{ color: 'primary.text' }}
-              value='pullups'
-              control={<Radio sx={{ color: 'primary.text' }} />}
-              label='Pullups'
-            />
-          </RadioGroup>
-        </FormControl>
-        <StatChart activity={curentActivity} data={chartData} />
+      <Box sx={{ width: '800px', margin: '0 auto' }}>
+        <DroplistForActivity
+          value={activityToShow}
+          onChange={handleChangeShow}
+          name='activityToShow'
+          label='show activity'
+          list={listOfExercises}
+        />
+        <StatChart activity={activityToShow} data={chartData} />
       </Box>
     </Box>
   );
