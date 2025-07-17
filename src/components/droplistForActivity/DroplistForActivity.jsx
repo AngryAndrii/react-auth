@@ -1,47 +1,39 @@
-import { Controller } from "react-hook-form";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { Controller } from 'react-hook-form';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
-const DroplistForActivity = ({
-  control,
-  name,
-  label,
-  value,
-  onChange,
-  list = [],
-  sx = {},
-}) => {
+const DroplistForActivity = ({ control, name, label, value, onChange, list = [], sx = {} }) => {
   const commonProps = {
     inputProps: {
       sx: {
-        color: "#eee",
+        color: '#eee',
       },
     },
     sx: {
-      "& label.Mui-focused": { color: "#ccc" },
-      ".MuiOutlinedInput-notchedOutline": { borderColor: "#666" },
-      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        borderColor: "#aaa",
-        color: "primary.text",
+      '& label.Mui-focused': { color: '#ccc' },
+      '.MuiOutlinedInput-notchedOutline': { borderColor: '#666' },
+      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+        borderColor: '#aaa',
+        color: 'primary.text',
       },
-      "&:hover .MuiOutlinedInput-notchedOutline": {
-        borderColor: "#999",
+      '&:hover .MuiOutlinedInput-notchedOutline': {
+        borderColor: '#999',
       },
-      ".MuiSvgIcon-root": { color: "#eee" },
+      '.MuiSvgIcon-root': { color: '#eee' },
       ...sx, // дозволяє кастомізувати ззовні
     },
     MenuProps: {
       PaperProps: {
         sx: {
-          backgroundColor: "#222",
-          color: "#fff",
+          backgroundColor: '#222',
+          color: '#fff',
           padding: 0,
-          "& .MuiMenuItem-root": {
-            padding: "8px 12px",
-            "&:hover": {
-              backgroundColor: "#8884d8",
+          '& .MuiMenuItem-root': {
+            padding: '8px 12px',
+            '&:hover': {
+              backgroundColor: '#8884d8',
             },
-            "&.Mui-selected": {
-              backgroundColor: "secondary.dark",
+            '&.Mui-selected': {
+              backgroundColor: 'secondary.dark',
             },
           },
         },
@@ -56,9 +48,9 @@ const DroplistForActivity = ({
       <InputLabel
         id={`${name}-label`}
         sx={{
-          color: "#bbb",
-          "&.Mui-focused": {
-            color: "#ccc",
+          color: '#bbb',
+          '&.Mui-focused': {
+            color: '#ccc',
           },
         }}
       >
